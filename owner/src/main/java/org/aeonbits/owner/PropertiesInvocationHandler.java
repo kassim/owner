@@ -18,6 +18,7 @@ import java.util.List;
 import static org.aeonbits.owner.Config.DisableableFeature.PARAMETER_FORMATTING;
 import static org.aeonbits.owner.Config.DisableableFeature.VARIABLE_EXPANSION;
 import static org.aeonbits.owner.Converters.convert;
+import static org.aeonbits.owner.PropertiesFormatter.getPropertiesFormatter;
 import static org.aeonbits.owner.PropertiesMapper.key;
 import static org.aeonbits.owner.Util.isFeatureDisabled;
 import static org.aeonbits.owner.util.Reflection.invokeDefaultMethod;
@@ -94,7 +95,7 @@ class PropertiesInvocationHandler implements InvocationHandler, Serializable {
     private String format(Method method, String format, Object... args) {
         if (isFeatureDisabled(method, PARAMETER_FORMATTING))
             return format;
-        return String.format(format, args);
+        return getPropertiesFormatter(method).format(format, args);
     }
 
     private String expandVariables(Method method, String value) {

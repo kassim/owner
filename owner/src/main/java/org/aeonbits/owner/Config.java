@@ -329,4 +329,15 @@ public interface Config extends Serializable {
         Class<? extends Converter> value();
     }
 
+    /**
+     * Specifies a {@link PropertiesFormatter} which controls how arguments should be applied to a given format
+     * in a property. If not specified, this will default to {@link org.aeonbits.owner.PropertiesFormatter#StringFormatter}.
+     */
+    @Retention(RUNTIME)
+    @Target({METHOD, TYPE})
+    @Documented
+    @interface Formatter {
+        PropertiesFormatter value();
+    }
+
 }
